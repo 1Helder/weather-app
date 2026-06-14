@@ -1,15 +1,31 @@
-import SearchBar from "./components/SearchBar"
-
+import SearchBar from "./components/SearchBar";
+import WeatherCard from "./components/WeatherCard";
 
 function App() {
+  const arrowFunction = (city) => {
+    console.log(city);
+  };
 
   return (
     // <div className="bg-blue-600 text-white">
-    //   tailwind funcionando 
+    //   tailwind funcionando
     // </div>
-
-    <SearchBar/>
-  )
+    <div>
+      <SearchBar onSearch={arrowFunction} />
+      <WeatherCard
+        city="Salvador"
+        country="BR"
+        weather="32°"
+        weekDay="Friday"
+        monthDay={9}
+        year={2026}
+        feelsLike={30}
+        humidity="46%"
+        wind="9 mph"
+        precipitation="0 in"
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
