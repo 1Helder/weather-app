@@ -1,6 +1,7 @@
 import React from 'react'
 import bgTodayLarge from '../assets/bg-today-large.svg'
 import iconSunny from '../assets/icon-sunny.webp'
+import StatCard from './StatCard'
 
 const WeatherCard = ({weather, city, country, weekDay, monthDay, year, feelsLike, humidity, wind, precipitation}) => {
   return (
@@ -33,25 +34,11 @@ const WeatherCard = ({weather, city, country, weekDay, monthDay, year, feelsLike
       </div>
 
       <div className='flex gap-2 mt-5'>
-        <div className='bg-[#25253F] rounded-sm p-3 pr-15'>
-          <p>Feels Like</p>
-          <p>{feelsLike}</p>
-        </div>
-
-        <div className='bg-[#25253F] rounded-sm p-3 pr-15'>
-          <p>Humidity</p>
-          <p>{humidity}</p>
-        </div>
-
-        <div className='bg-[#25253F] rounded-sm p-3 pr-15'>
-          <p>Wind</p>
-          <p>{wind}</p>
-        </div>
-
-        <div className='bg-[#25253F] rounded-sm p-3 pr-15'>
-          <p>Precipitation</p>
-          <p>{precipitation}</p>
-        </div>
+        
+        <StatCard label="Feels like" value={feelsLike}/>
+        <StatCard label="Humidity" value={humidity}/>
+        <StatCard label="Wind" value={wind}/>
+        <StatCard label="Precipitation" value={precipitation}/>
 
       </div>
       
