@@ -1,4 +1,5 @@
 import DailyForecast from "./components/DailyForecast";
+import HourlyForecast from "./components/HourlyForecast";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 
@@ -36,6 +37,7 @@ function App() {
         precipitation="0 in"
       />
       <DailyForecast days ={days}/>
+      <HourlyForecast />
     </div>
   );
 }
