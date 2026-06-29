@@ -5,7 +5,7 @@ import StatCard from './StatCard'
 
 const WeatherCard = ({weather, city, country, weekDay, monthDay, year, feelsLike, humidity, wind, precipitation}) => {
   return (
-    <div>
+    <div className='rounded-xl overflow-hidden'>
       <div className=' flex items-center justify-between p-4 min-h-70 text-white bg-cover bg-center bg-no-repeat' style={{ backgroundImage: `url(${bgTodayLarge})` }}>
         
         <div className='flex flex-col'>
