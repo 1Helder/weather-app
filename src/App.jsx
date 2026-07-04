@@ -22,6 +22,7 @@ function App() {
     <div className="bg-[#02012b] min-h-screen">
 
     <div className="p-6 max-w-6xl mx-auto" >
+      <h1 className="text-white text-center text-5xl mb-9 font-bold">How's the sky looking today?</h1>
       <SearchBar onSearch={arrowFunction} />
 
       <div className="flex gap-6">

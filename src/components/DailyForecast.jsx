@@ -22,8 +22,8 @@ const DailyForecast = ({days}) => {
 
 
   return (
-    <section>
-      <h2>Daily Forecast</h2> 
+    <section className='mt-7'>
+      <h2 className='text-white text-lg font-semibold'>Daily Forecast</h2> 
 
       <div className='flex gap-2'> 
         {days.map((day) =>(
