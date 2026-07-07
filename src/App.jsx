@@ -2,11 +2,10 @@ import DailyForecast from "./components/DailyForecast";
 import HourlyForecast from "./components/HourlyForecast";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
+import { useWeather } from "./hooks/useWeather";
 
 function App() {
-  const arrowFunction = (city) => {
-    console.log(city);
-  };
+	const {weather,location,loading,error,searchCity} = useWeather()
 
   const days = [
     { id: 1, weekDay: "Tue", minTemp: 14, maxTemp: 20, weather: "Sunny" },
@@ -23,22 +22,24 @@ function App() {
 
     <div className="p-6 max-w-6xl mx-auto" >
       <h1 className="text-white text-center text-5xl mb-9 font-bold">How's the sky looking today?</h1>
-      <SearchBar onSearch={arrowFunction} />
+      <SearchBar onSearch={searchCity} />
 
       <div className="flex gap-6">
         <div className="basis-2/3">
+		{weather && location && (
           <WeatherCard
-            city="Salvador"
-            country="BR"
-            weather="32°"
+            city={location.name}
+            country={location.country}
+            weather={`${weather.current.temperature_2m}°`}
             weekDay="Friday"
             monthDay={9}
             year={2026}
-            feelsLike={30}
-            humidity="46%"
-            wind="9 mph"
-            precipitation="0 in"
+            feelsLike={weather.current.temperature_2m} // ou apparent_temperature, se eu adicionar esse campo na API
+            humidity={`${weather.current.relative_humidity_2m}%`}
+            wind={`${weather.current.wind_speed_10m} km/h`}
+            precipitation={`${weather.current.precipitation} mm`}
           />
+		)}
           <DailyForecast days={days} />
         </div>
         <div className="basis-1/3">

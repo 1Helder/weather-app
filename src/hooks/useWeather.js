@@ -8,16 +8,20 @@ export function useWeather() {
   const [error, setError] = useState(null);
 
   async function searchCity(city) {
+    
     try {
       setLoading(true);
       setError(null);
 
       const coordinates = await getCoordinates(city);
+      
 
       const weatherData = await getWeather(
         coordinates.latitude,
         coordinates.longitude,
       );
+
+      
 
       setLocation(coordinates);
       setWeather(weatherData);
