@@ -24,7 +24,7 @@ export async function getWeather(lat, lon) {
     `https://api.open-meteo.com/v1/forecast?` +
       `latitude=${lat}` +
       `&longitude=${lon}` +
-      `&current=temperature_2m,weather_code,wind_speed_10m,precipitation,relative_humidity_2m` +
+      `&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,precipitation,relative_humidity_2m` +
       `&hourly=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m` +
       `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,sunrise,sunset` +
       `&timezone=auto`,

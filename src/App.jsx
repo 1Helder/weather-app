@@ -3,6 +3,7 @@ import HourlyForecast from "./components/HourlyForecast";
 import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import { useWeather } from "./hooks/useWeather";
+import { getWeekDay, getMonthDay, getYear } from "./utils/date";
 
 function App() {
 	const {weather,location,loading,error,searchCity} = useWeather()
@@ -31,10 +32,10 @@ function App() {
             city={location.name}
             country={location.country}
             weather={`${weather.current.temperature_2m}°`}
-            weekDay="Friday"
-            monthDay={9}
-            year={2026}
-            feelsLike={weather.current.temperature_2m} // ou apparent_temperature, se eu adicionar esse campo na API
+            weekDay={getWeekDay(weather.current.time)}
+            monthDay={getMonthDay(weather.current.time)}
+            year={getYear(weather.current.time)}
+            feelsLike={weather.current.apparent_temperature}
             humidity={`${weather.current.relative_humidity_2m}%`}
             wind={`${weather.current.wind_speed_10m} km/h`}
             precipitation={`${weather.current.precipitation} mm`}
