@@ -1,0 +1,33 @@
+const weatherMap = {
+  0: "Sunny",
+  1: "PartCloudy",
+  2: "PartCloudy",
+  3: "Overcast",
+  45: "Overcast",
+  48: "Overcast",
+  51: "Rainy",
+  53: "Rainy",
+  55: "Rainy",
+  56: "Rainy",
+  57: "Rainy",
+  61: "Rainy",
+  63: "Rainy",
+  65: "Rainy",
+  66: "Rainy",
+  67: "Rainy",
+  80: "Rainy",
+  81: "Rainy",
+  82: "Rainy",
+  71: "Snow",
+  73: "Snow",
+  75: "Snow",
+  77: "Snow",
+  85: "Snow",
+  86: "Snow",
+  95: "Storm",
+  96: "Storm",
+  99: "Storm",
+};
+export function getWeatherIcon(code) {
+  return weatherMap[code] ?? "Sunny";
+}

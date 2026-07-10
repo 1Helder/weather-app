@@ -7,6 +7,8 @@ import iconStorm from '../assets/icon-storm.webp'
 import iconOvercast from '../assets/icon-overcast.webp'
 import iconPartCloudy from '../assets/icon-partly-cloudy.webp'
 
+import { getWeatherIcon } from '../utils/weather'
+
 
 const DailyForecast = ({days}) => {
 
@@ -16,7 +18,7 @@ const DailyForecast = ({days}) => {
     Snow: iconSnow,
     Storm: iconStorm,
     Overcast: iconOvercast,
-    partCloudy: iconPartCloudy,
+    PartCloudy: iconPartCloudy,
   }
 
 
@@ -30,7 +32,7 @@ const DailyForecast = ({days}) => {
             <div key={day.id} className=' w-24 bg-[#25253F] px-3 py-4 text-white rounded-md mt-5'>
               <div className='flex flex-col items-center gap-3'>
                 <p className='text-sm'>{day.weekDay}</p>
-                <img src={weatherIcons[day.weather]} alt="weather" />
+                <img src={weatherIcons[getWeatherIcon(day.weather)]} alt="weather" />
 
                 <div className='flex w-full justify-between text-sm'>
                   <span>{day.maxTemp}°C</span>

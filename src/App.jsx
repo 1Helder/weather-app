@@ -6,50 +6,50 @@ import { useWeather } from "./hooks/useWeather";
 import { getWeekDay, getMonthDay, getYear } from "./utils/date";
 
 function App() {
-	const {weather,location,loading,error,searchCity} = useWeather()
+  const { weather, location, loading, error, searchCity } = useWeather();
 
-  const days = [
-    { id: 1, weekDay: "Tue", minTemp: 14, maxTemp: 20, weather: "Sunny" },
-    { id: 2, weekDay: "Wed", minTemp: 15, maxTemp: 21, weather: "Sunny" },
-    { id: 3, weekDay: "Thu", minTemp: 14, maxTemp: 24, weather: "Sunny" },
-    { id: 4, weekDay: "Fri", minTemp: 13, maxTemp: 25, weather: "Sunny" },
-    { id: 5, weekDay: "Sat", minTemp: 15, maxTemp: 21, weather: "Sunny" },
-    { id: 6, weekDay: "Sun", minTemp: 16, maxTemp: 25, weather: "Sunny" },
-    { id: 7, weekDay: "Mon", minTemp: 15, maxTemp: 24, weather: "Sunny" },
-  ];
+  const days = weather
+    ? weather.daily.time.map((time, i) => ({
+        id: i,
+        weekDay: getWeekDay(weather.daily.time[i]),
+        maxTemp: weather.daily.temperature_2m_max[i],
+        minTemp: weather.daily.temperature_2m_min[i],
+        weather: weather.daily.weather_code[i],
+      }))
+    : [];
 
   return (
     <div className="bg-[#02012b] min-h-screen">
+      <div className="p-6 max-w-6xl mx-auto">
+        <h1 className="text-white text-center text-5xl mb-9 font-bold">
+          How's the sky looking today?
+        </h1>
+        <SearchBar onSearch={searchCity} />
 
-    <div className="p-6 max-w-6xl mx-auto" >
-      <h1 className="text-white text-center text-5xl mb-9 font-bold">How's the sky looking today?</h1>
-      <SearchBar onSearch={searchCity} />
-
-      <div className="flex gap-6">
-        <div className="basis-2/3">
-		{weather && location && (
-          <WeatherCard
-            city={location.name}
-            country={location.country}
-            weather={`${weather.current.temperature_2m}°`}
-            weekDay={getWeekDay(weather.current.time)}
-            monthDay={getMonthDay(weather.current.time)}
-            year={getYear(weather.current.time)}
-            feelsLike={weather.current.apparent_temperature}
-            humidity={`${weather.current.relative_humidity_2m}%`}
-            wind={`${weather.current.wind_speed_10m} km/h`}
-            precipitation={`${weather.current.precipitation} mm`}
-          />
-		)}
-          <DailyForecast days={days} />
-        </div>
-        <div className="basis-1/3">
-          <HourlyForecast />
+        <div className="flex gap-6">
+          <div className="basis-2/3">
+            {weather && location && (
+              <WeatherCard
+                city={location.name}
+                country={location.country}
+                weather={`${weather.current.temperature_2m}°`}
+                weekDay={getWeekDay(weather.current.time)}
+                monthDay={getMonthDay(weather.current.time)}
+                year={getYear(weather.current.time)}
+                feelsLike={weather.current.apparent_temperature}
+                humidity={`${weather.current.relative_humidity_2m}%`}
+                wind={`${weather.current.wind_speed_10m} km/h`}
+                precipitation={`${weather.current.precipitation} mm`}
+              />
+            )}
+            <DailyForecast days={days} />
+          </div>
+          <div className="basis-1/3">
+            <HourlyForecast />
+          </div>
         </div>
       </div>
     </div>
-    </div>
-    
   );
 }
 
