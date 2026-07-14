@@ -18,6 +18,17 @@ function App() {
       }))
     : [];
 
+  const hoursByDay = weather ? weather.hourly.time.reduce((acc, time, i) => {
+    const date = time.slice(0, 10);
+    if (!acc[date]) acc[date] = [];
+    acc[date].push({
+      hour: time.slice(11, 16),
+      temp: weather.hourly.temperature_2m[i],
+      weather: weather.hourly.weather_code[i],
+    });
+    return acc;
+  }, {}):{};
+
   return (
     <div className="bg-[#02012b] min-h-screen">
       <div className="p-6 max-w-6xl mx-auto">
@@ -45,7 +56,7 @@ function App() {
             <DailyForecast days={days} />
           </div>
           <div className="basis-1/3">
-            <HourlyForecast />
+            <HourlyForecast hoursByDay={hoursByDay} />
           </div>
         </div>
       </div>
