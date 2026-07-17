@@ -29,5 +29,5 @@ const weatherMap = {
   99: "Storm",
 };
 export function getWeatherIcon(code) {
-  return weatherMap[code] ?? "Sunny";
+  return weatherMap[code] ?? "Overcast";
 }

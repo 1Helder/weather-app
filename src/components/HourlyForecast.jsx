@@ -1,13 +1,12 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-
 import iconSunny from "../assets/icon-sunny.webp";
 import iconRain from "../assets/icon-rain.webp";
 import iconSnow from "../assets/icon-snow.webp";
 import iconStorm from "../assets/icon-storm.webp";
 import iconOvercast from "../assets/icon-overcast.webp";
 import iconPartCloudy from "../assets/icon-partly-cloudy.webp";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getWeekDay } from "../utils/date";
 
 import { getWeatherIcon } from "../utils/weather";
 
@@ -41,7 +40,19 @@ const HourlyForecast = ({ hoursByDay }) => {
       mt-3
     "
     >
-      <h2 className="text-lg font-semibold mb-4">Hourly forecast</h2>
+      <div className="flex justify-between mb-4 items-center">
+        <h2 className="text-lg font-semibold">Hourly forecast</h2>
+        <select
+          value={selectedDay}
+          onChange={(e) => setSelectedDay(e.target.value)}
+        >
+          {keys.map((key) => (
+            <option key={key} value={key}>
+              {getWeekDay(key)}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="space-y-3">
         {selectedDay &&
@@ -62,7 +73,13 @@ const HourlyForecast = ({ hoursByDay }) => {
             "
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-xl"><img src={weatherIcons[getWeatherIcon(hour.weather)]} alt="weather" className="h-6 w-6" /></span>
+                  <span className="text-xl">
+                    <img
+                      src={weatherIcons[getWeatherIcon(hour.weather)]}
+                      alt="weather"
+                      className="h-6 w-6"
+                    />
+                  </span>
 
                   <p className="text-sm">{hour.hour}</p>
                 </div>
