@@ -37,7 +37,7 @@ const HourlyForecast = ({ hoursByDay }) => {
       w-full
       max-w-sm
       text-white
-      mt-3
+      
     "
     >
       <div className="flex justify-between mb-4 items-center">
@@ -84,7 +84,7 @@ const HourlyForecast = ({ hoursByDay }) => {
                   <p className="text-sm">{hour.hour}</p>
                 </div>
 
-                <p className="text-sm font-medium">{hour.temp}</p>
+                <p className="text-sm font-medium">{`${Math.floor(hour.temp)}°`}</p>
               </div>
             ))}
       </div>

@@ -25,7 +25,6 @@ export function useWeather() {
 
       setLocation(coordinates);
       setWeather(weatherData);
-      console.log(weather.daily)
     } catch (err) {
       setError(err.message);
     } finally {

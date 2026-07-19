@@ -35,8 +35,8 @@ const DailyForecast = ({days}) => {
                 <img src={weatherIcons[getWeatherIcon(day.weather)]} alt="weather" />
 
                 <div className='flex w-full justify-between text-sm'>
-                  <span>{day.maxTemp}°</span>
-                  <span className='text-slate-400'>{day.minTemp}°</span>
+                  <span>{Math.floor(day.maxTemp)}°</span>
+                  <span className='text-slate-400'>{Math.floor(day.minTemp)}°</span>
                 </div>
               </div>
             </div>

@@ -38,8 +38,8 @@ function App() {
           How's the sky looking today?
         </h1>
         <SearchBar onSearch={searchCity} />
-        {loading && <p>Pesquisando... aguarde um momento</p>}
-        {error && <p>Cidade não encontrada, tente novamente</p>}
+        {loading && <p className="text-yellow-500">Pesquisando... aguarde um momento</p>}
+        {error && <p className="text-red-600">Cidade não encontrada, tente novamente</p>}
 
         <div className="flex gap-6">
           <div className="basis-2/3">
@@ -47,11 +47,11 @@ function App() {
               <WeatherCard
                 city={location.name}
                 country={location.country}
-                weather={`${weather.current.temperature_2m}°`}
+                weather={`${Math.floor(weather.current.temperature_2m)}°`}
                 weekDay={getWeekDay(weather.current.time)}
                 monthDay={getMonthDay(weather.current.time)}
                 year={getYear(weather.current.time)}
-                feelsLike={weather.current.apparent_temperature}
+                feelsLike={`${Math.floor(weather.current.apparent_temperature)}°`}
                 humidity={`${weather.current.relative_humidity_2m}%`}
                 wind={`${weather.current.wind_speed_10m} km/h`}
                 precipitation={`${weather.current.precipitation} mm`}
