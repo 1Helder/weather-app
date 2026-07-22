@@ -12,11 +12,11 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className="flex justify-center mb-6">
       {/* Adicionado flex e items-center no form para unir os elementos */}
-      <form onSubmit={handleSubmit} className="flex items-center">
-        <div className="relative">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row w-full max-w-2xl mx-auto">
+        <div className="relative flex-1">
           <img src={iconSearch} alt="Search" className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 " />
           <input
-            className="text-white w-96 bg-[#25253f] px-4 py-2 pl-9 rounded-l-lg outline-none"
+            className="w-full text-white bg-[#25253f] px-4 py-3 pl-10 rounded-lg sm:rounded-r-none outline-none"
             type="text"
             placeholder="Search for a place..."
             value={input}
@@ -25,7 +25,7 @@ const SearchBar = ({ onSearch }) => {
         </div>
 
         <button
-          className="text-white bg-[#4657d9] px-4 py-2 rounded-r-lg"
+          className="w-full sm:w-auto bg-[#4657d9] text-white px-6 py-3 rounded-lg sm:rounded-l-none"
           type="submit"
         >
           Search

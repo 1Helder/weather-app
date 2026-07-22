@@ -1,15 +1,32 @@
 export async function getCoordinates(city) {
+  const [cityName, state] = city.split(/[-,]/).map((text) => text.trim());
+
   const response = await fetch(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=pt&format=json`,
+    `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}&count=10&language=pt&format=json`,
   );
 
   const data = await response.json();
+  console.log(data.results);
 
   if (!data.results || data.results.length === 0) {
     throw new Error("Cidade não encontrada");
   }
 
-  const location = data.results[0];
+  let location;
+
+  if (state) {
+    location = data.results.find(
+      (item) =>
+        item.name.toLowerCase() === cityName.toLowerCase() &&
+        item.admin1.toLowerCase() === state.toLowerCase(),
+    );
+  } else {
+    location = data.results.find(
+      (item) => item.name.toLowerCase() === cityName.toLowerCase(),
+    );
+  }
+
+  location ||= data.results[0];
 
   return {
     name: location.name,

@@ -35,7 +35,7 @@ const HourlyForecast = ({ hoursByDay }) => {
       rounded-3xl
       p-5
       w-full
-      max-w-sm
+      lg:max-w-sm
       text-white
       
     "
@@ -54,7 +54,7 @@ const HourlyForecast = ({ hoursByDay }) => {
         </select>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-3 max-h-150 overflow-y-auto">
         {selectedDay &&
           hoursByDay[selectedDay] &&
           hoursByDay[selectedDay]

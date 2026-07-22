@@ -33,16 +33,16 @@ function App() {
 
   return (
     <div className="bg-[#02012b] min-h-screen">
-      <div className="p-6 max-w-6xl mx-auto">
-        <h1 className="text-white text-center text-5xl mb-9 font-bold">
+      <div className="px-4 py-6 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <h1 className="text-white text-center font-bold mb-8 text-4xl sm:text-5xl lg:text-6xl">
           How's the sky looking today?
         </h1>
         <SearchBar onSearch={searchCity} />
         {loading && <p className="text-yellow-500">Pesquisando... aguarde um momento</p>}
         {error && <p className="text-red-600">Cidade não encontrada, tente novamente</p>}
 
-        <div className="flex gap-6">
-          <div className="basis-2/3">
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="w-full lg:basis-2/3">
             {weather && location && (
               <WeatherCard
                 city={location.name}
@@ -59,7 +59,7 @@ function App() {
             )}
             <DailyForecast days={days} />
           </div>
-          <div className="basis-1/3">
+          <div className="w-full lg:basis-1/3">
             <HourlyForecast hoursByDay={hoursByDay} />
           </div>
         </div>
